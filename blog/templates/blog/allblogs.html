@@ -1,8 +1,6 @@
 <!doctype html>
-
-{% load static %}
-
 <html lang="en">
+{% load static %}
 
 <head>
   <meta charset="utf-8">
@@ -11,7 +9,7 @@
   <meta name="author" content="">
   <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-  <title>Omkar Achrekar</title>
+  <title>Omkar's Blogs</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
@@ -48,38 +46,27 @@
 
   <main role="main">
 
-    <section class="jumbotron text-center mb-0">
-      <div class="container">
-        <h1 class="jumbotron-heading">Omkar Achrekar</h1>
-        <p class="lead text-muted">Hello, I am a Data Analyst, working for a Re-Insurance company</p>
-        <p>
-          <a href="mailto:omkar007@live.com" class="btn btn-secondary my-2">Contact Me</a>
-        </p>
-        <img src="{% static 'professional.jpg' %}" height=350 width=400 -o-object-fit: contain/>
-      </div>
-    </section>
+    <div class="container">
+      <h1 class="text-center pt-3"> Welcome to my blogs </h1>
+      <br>
+      <br>
+      <h2>Latest Post</h2>
+      <hr>
+      {% for blog in blogs.all %}
+      <a href="{% url 'detail' blog.id%}">
+        <h3>{{blog.title}}</h3>
+      </a>
+      {{ blog.pub_date_pretty }}
+      <br>
+      <img class="img-fluid" src="{{blog.image.url}}" height=200 width=200 alt="">
+      <br>
+      <p>{{ blog.summary }}</p>
+      <hr>
+      {% endfor %}
 
-    <div class="album py-5 bg-light">
-      <div class="container">
-
-        <div class="row">
-
-          {% for job in jobs.all %}
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" src="{{job.image.url}}" alt="Card image cap">
-              <div class="card-body bg-secondary text-white">
-                <p class="card-text"> {{job.summary}} </p>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-
-        </div>
-      </div>
     </div>
-
   </main>
+
 
   <footer class="text-muted">
     <div class="container text-right">
